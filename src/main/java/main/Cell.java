@@ -14,6 +14,11 @@ public class Cell
         return String.valueOf(cellState.getTextRepresentation());
     }
 
+    public CellState getState()
+    {
+        return cellState;
+    }
+
     private final Coordinates coordinates;
     private final CellState cellState;
 }
