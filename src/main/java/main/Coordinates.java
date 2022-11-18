@@ -8,6 +8,11 @@ public class Coordinates
         this.column = column;
     }
 
-    private final int row;
-    private final int column;
+    public Coordinates offsetCoordinates(Coordinates coordinates)
+    {
+        return new Coordinates(row + coordinates.row, column + coordinates.column);
+    }
+
+    public int row;
+    public int column;
 }

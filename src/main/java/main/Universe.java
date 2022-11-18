@@ -46,14 +46,43 @@ public class Universe
         }
     }
 
+//    public void displayAliveNeighborsCount()
+//    {
+//        for (int row = 0; row < size; row++)
+//        {
+//            for (int column = 0; column < size; column++)
+//            {
+//                int aliveNeighborsCount = CellManager.getAliveNeighborCellsCount(this, new Coordinates(row, column));
+//                System.out.print(aliveNeighborsCount);
+//            }
+//
+//            System.out.println();
+//        }
+//    }
+
     private void setCellAt(int row, int column, CellState cellState)
     {
         universeArray[row][column] = new Cell(new Coordinates(row, column), cellState);
     }
 
+    public void setCellAt(Coordinates coordinates, CellState cellState)
+    {
+        setCellAt(coordinates.row, coordinates.column, cellState);
+    }
+
     private Cell getCellAt(int row, int column)
     {
         return universeArray[row][column];
+    }
+
+    public Cell getCellAt(Coordinates coordinates)
+    {
+        return getCellAt(coordinates.row, coordinates.column);
+    }
+
+    public int getSize()
+    {
+        return size;
     }
 
     private final int size;
