@@ -1,7 +1,19 @@
 package main;
 
-public class CellState
+public enum CellState
 {
-    public static final char alive = 'O';
-    public static final char dead = 'X';
+    alive('O'),
+    dead('X');
+
+    CellState(char textRepresentation)
+    {
+        this.textRepresentation = textRepresentation;
+    }
+
+    public char getTextRepresentation()
+    {
+        return textRepresentation;
+    }
+
+    private final char textRepresentation;
 }

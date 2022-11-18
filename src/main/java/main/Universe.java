@@ -8,11 +8,11 @@ public class Universe
     {
         this.size = size;
 
-        universeArray = new char[size][size];
+        universeArray = new Cell[size][size];
 
         for (int row = 0; row < size; row++)
         {
-            universeArray[row] = new char[size];
+            universeArray[row] = new Cell[size];
         }
 
         populate();
@@ -28,7 +28,7 @@ public class Universe
         {
             for (int column = 0; column < size; column++)
             {
-                setCellAt(row, column, random.nextBoolean() ? CellState.alive : CellState.dead);
+                setCellAt(row, column, (random.nextBoolean() ? CellState.alive : CellState.dead));
             }
         }
     }
@@ -46,16 +46,16 @@ public class Universe
         }
     }
 
-    private void setCellAt(int row, int column, char value)
+    private void setCellAt(int row, int column, CellState cellState)
     {
-        universeArray[row][column] = value;
+        universeArray[row][column] = new Cell(new Coordinates(row, column), cellState);
     }
 
-    private char getCellAt(int row, int column)
+    private Cell getCellAt(int row, int column)
     {
         return universeArray[row][column];
     }
 
     private final int size;
-    private final char[][] universeArray;
+    private final Cell[][] universeArray;
 }
