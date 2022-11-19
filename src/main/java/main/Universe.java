@@ -61,6 +61,26 @@ public class Universe
         }
     }
 
+    public int getAliveCellsCount()
+    {
+        int aliveCellsCount = 0;
+
+        for (int row = 0; row < size; row++)
+        {
+            for (int column = 0; column < size; column++)
+            {
+                Coordinates coordinates = new Coordinates(row, column);
+
+                if (getCellAt(coordinates).getState() == CellState.alive)
+                {
+                    ++aliveCellsCount;
+                }
+            }
+        }
+
+        return aliveCellsCount;
+    }
+
 //    public void displayAliveNeighborsCount()
 //    {
 //        for (int row = 0; row < size; row++)

@@ -5,16 +5,16 @@ public class GameOfLife
     GameOfLife()
     {
         Universe universe = new Universe(Config.UNIVERSE_SIZE);
-        universe.display();
 
-        System.out.println("----------");
+        int targetGenerationsCount = 5;
 
-        universe.evolve();
-        universe.display();
-
-        System.out.println("----------");
-
-        universe.evolve();
-        universe.display();
+        for (int generation = 1; generation <= targetGenerationsCount; generation++)
+        {
+            System.out.printf("Generation: %d\n", generation);
+            System.out.printf("Alive cells: %d\n\n", universe.getAliveCellsCount());
+            universe.display();
+            universe.evolve();
+            System.out.println("\n----------\n");
+        }
     }
 }
