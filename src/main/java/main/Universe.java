@@ -20,6 +20,7 @@ public class Universe
     public Universe(Universe universe)
     {
         this.size = universe.size;
+        this.generation = universe.generation;
         universeArray = universe.universeArray.clone();
 
         for (int row = 0; row < size; row++)
@@ -41,11 +42,14 @@ public class Universe
                 setCellAt(row, column, (random.nextBoolean() ? CellState.alive : CellState.dead));
             }
         }
+
+        generation = 1;
     }
 
     public void evolve()
     {
         EvolutionManager.evolveUniverse(this);
+        ++generation;
     }
 
     public void display()
@@ -79,6 +83,12 @@ public class Universe
         }
 
         return aliveCellsCount;
+    }
+
+    public void reset()
+    {
+        /*Works only for constant seed*/
+        populate();
     }
 
 //    public void displayAliveNeighborsCount()
@@ -120,6 +130,13 @@ public class Universe
         return size;
     }
 
+    public int getGeneration()
+    {
+        return generation;
+    }
+
     private final int size;
+
+    private int generation;
     private final Cell[][] universeArray;
 }

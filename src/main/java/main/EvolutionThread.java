@@ -10,17 +10,11 @@ public class EvolutionThread extends Thread
     @Override
     public void run()
     {
-        int generation = 1;
-
         while (true)
         {
-            System.out.printf("Generation: %d\n", generation);
-
-            guiHandle.generationCounterLabel.setText(String.format("Generation: %d", generation));
-            guiHandle.aliveCellsCounterLabel.setText(String.format("Alive cells: %d", guiHandle.universe.getAliveCellsCount()));
+            System.out.printf("Generation: %d\n", guiHandle.universe.getGeneration());
             guiHandle.universe.evolve();
-            ++generation;
-            guiHandle.universeDisplay.repaint();
+            guiHandle.updateGUI();
 
             try
             {

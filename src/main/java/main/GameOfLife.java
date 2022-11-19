@@ -15,6 +15,7 @@ public class GameOfLife extends JFrame
 
         universe = new Universe(Config.UNIVERSE_SIZE);
         universeDisplay.setUniverse(universe);
+        updateGUI();
         evolutionThread = new EvolutionThread(this);
 
         pack();
@@ -52,15 +53,20 @@ public class GameOfLife extends JFrame
 
     private void addActionsToButtons()
     {
-        playButton.addActionListener(actionEvent -> startEvolution());
+        playButton.addActionListener(actionEvent ->
+        {
+            resetButton.setEnabled(!playButton.isSelected());
+            toggleEvolution();
+        });
+
         resetButton.addActionListener(actionEvent -> resetEvolution());
     }
 
-    private void startEvolution()
+    private void toggleEvolution()
     {
         System.out.println("START EVOLUTION CLICKED");
 
-        if(!evolutionThread.isAlive())
+        if (!evolutionThread.isAlive())
         {
             System.out.println("STARTING THREAD");
             evolutionThread.start();
@@ -73,7 +79,16 @@ public class GameOfLife extends JFrame
 
     private void resetEvolution()
     {
+        System.out.println("RESET EVOLUTION CLICKED");
+        universe.reset();
+        updateGUI();
+    }
 
+    public void updateGUI()
+    {
+        generationCounterLabel.setText("Generation: %d".formatted(universe.getGeneration()));
+        aliveCellsCounterLabel.setText("Alive cells: %d".formatted(universe.getAliveCellsCount()));
+        universeDisplay.repaint();
     }
 
     JToggleButton playButton;
