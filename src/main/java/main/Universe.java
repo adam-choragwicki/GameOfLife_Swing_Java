@@ -7,7 +7,6 @@ public class Universe
     public Universe(int size)
     {
         this.size = size;
-
         universeArray = new Cell[size][size];
 
         for (int row = 0; row < size; row++)
@@ -16,6 +15,17 @@ public class Universe
         }
 
         populate();
+    }
+
+    public Universe(Universe universe)
+    {
+        this.size = universe.size;
+        universeArray = universe.universeArray.clone();
+
+        for (int row = 0; row < size; row++)
+        {
+            universeArray[row] = universe.universeArray[row].clone();
+        }
     }
 
     private void populate()
@@ -31,6 +41,11 @@ public class Universe
                 setCellAt(row, column, (random.nextBoolean() ? CellState.alive : CellState.dead));
             }
         }
+    }
+
+    public void evolve()
+    {
+        EvolutionManager.evolveUniverse(this);
     }
 
     public void display()
