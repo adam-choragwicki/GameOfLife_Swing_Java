@@ -2,9 +2,9 @@ package main;
 
 public class EvolutionThread extends Thread
 {
-    public EvolutionThread(GameOfLife gameOfLife)
+    public EvolutionThread(Controller controller)
     {
-        this.guiHandle = gameOfLife;
+        this.controller = controller;
     }
 
     @Override
@@ -12,9 +12,10 @@ public class EvolutionThread extends Thread
     {
         while (true)
         {
-            System.out.printf("Generation: %d\n", guiHandle.universe.getGeneration());
-            guiHandle.universe.evolve();
-            guiHandle.updateGUI();
+            System.out.printf("Generation: %d\n", controller.getModel().getUniverse().getGeneration());
+
+            controller.getModel().getUniverse().evolve();
+            controller.updateGUI();
 
             try
             {
@@ -38,6 +39,5 @@ public class EvolutionThread extends Thread
         }
     }
 
-    //TODO do it in smarter way
-    GameOfLife guiHandle;
+    final Controller controller;
 }

@@ -54,5 +54,5 @@ public class NeighborCellsCoordinatesGenerator
     }
 
     static final int NEIGHBOR_CELLS_COUNT = 8;
-    int universeSize;
+    final int universeSize;
 }

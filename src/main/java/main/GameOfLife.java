@@ -6,96 +6,15 @@ public class GameOfLife extends JFrame
 {
     GameOfLife()
     {
-        super("Game of Life");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        model = new Model();
+        view = new View();
+        controller = new Controller(model, view);
 
-        addComponents();
-        addActionsToButtons();
-
-        universe = new Universe(Config.UNIVERSE_SIZE);
-        universeDisplay.setUniverse(universe);
-        updateGUI();
-        evolutionThread = new EvolutionThread(this);
-
-        pack();
-        setLocationRelativeTo(null);
-        setMinimumSize(getSize());
-        setVisible(true);
+        controller.addActionsToButtons();
+        controller.setUniverse();
     }
 
-    private void addComponents()
-    {
-        JPanel buttonsPanel = new JPanel();
-
-        playButton = new JToggleButton("PLAY");
-        playButton.setFocusable(false);
-        buttonsPanel.add(playButton);
-
-        resetButton = new JButton("RESET");
-        resetButton.setFocusable(false);
-        buttonsPanel.add(resetButton);
-
-        add(buttonsPanel);
-
-        JPanel labelsPanel = new JPanel();
-
-        generationCounterLabel = new JLabel("Generation #");
-        labelsPanel.add(generationCounterLabel);
-
-        aliveCellsCounterLabel = new JLabel("Alive: ");
-        labelsPanel.add(aliveCellsCounterLabel);
-        add(labelsPanel);
-
-        universeDisplay = new UniverseDisplay(Config.UNIVERSE_SIZE);
-        add(universeDisplay);
-    }
-
-    private void addActionsToButtons()
-    {
-        playButton.addActionListener(actionEvent ->
-        {
-            resetButton.setEnabled(!playButton.isSelected());
-            toggleEvolution();
-        });
-
-        resetButton.addActionListener(actionEvent -> resetEvolution());
-    }
-
-    private void toggleEvolution()
-    {
-        System.out.println("START EVOLUTION CLICKED");
-
-        if (!evolutionThread.isAlive())
-        {
-            System.out.println("STARTING THREAD");
-            evolutionThread.start();
-        }
-        else
-        {
-            evolutionThread.interrupt();
-        }
-    }
-
-    private void resetEvolution()
-    {
-        System.out.println("RESET EVOLUTION CLICKED");
-        universe.reset();
-        updateGUI();
-    }
-
-    public void updateGUI()
-    {
-        generationCounterLabel.setText("Generation: %d".formatted(universe.getGeneration()));
-        aliveCellsCounterLabel.setText("Alive cells: %d".formatted(universe.getAliveCellsCount()));
-        universeDisplay.repaint();
-    }
-
-    JToggleButton playButton;
-    JButton resetButton;
-    JLabel generationCounterLabel;
-    JLabel aliveCellsCounterLabel;
-    Universe universe;
-    UniverseDisplay universeDisplay;
-    EvolutionThread evolutionThread;
+    final Model model;
+    final View view;
+    final Controller controller;
 }
