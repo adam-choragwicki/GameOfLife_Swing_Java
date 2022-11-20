@@ -5,12 +5,12 @@ import java.awt.*;
 
 public class View extends JFrame
 {
-    View()
+    View(int universeSize)
     {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        addComponents();
+        addComponents(universeSize);
 
         pack();
         setLocationRelativeTo(null);
@@ -19,7 +19,7 @@ public class View extends JFrame
         setVisible(true);
     }
 
-    private void addComponents()
+    private void addComponents(int universeSize)
     {
         JPanel controlsPanel = new JPanel();
         controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
@@ -68,7 +68,7 @@ public class View extends JFrame
 
         controlsPanel.add(speedControlPanel);
 
-        universeDisplay = new UniverseDisplay(Config.UNIVERSE_SIZE);
+        universeDisplay = new UniverseDisplay(universeSize);
 
         add(controlsPanel, BorderLayout.WEST);
         add(universeDisplay, BorderLayout.EAST);

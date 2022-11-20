@@ -2,9 +2,9 @@ package main;
 
 public class Model
 {
-    Model()
+    Model(int universeSize)
     {
-        universe = new Universe(Config.UNIVERSE_SIZE);
+        universe = new Universe(universeSize);
     }
 
     public Universe getUniverse()

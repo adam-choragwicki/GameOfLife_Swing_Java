@@ -4,6 +4,12 @@ public class Main
 {
     public static void main(String[] args)
     {
-        new GameOfLife();
+        UniverseSizeDialog universeSizeDialog = new UniverseSizeDialog();
+        final int requestedUniverseSizeDialog = universeSizeDialog.getRequestedUniverseSize();
+
+        if (requestedUniverseSizeDialog != UniverseSizeDialog.EXIT_APPLICATION)
+        {
+            new GameOfLife(requestedUniverseSizeDialog);
+        }
     }
 }

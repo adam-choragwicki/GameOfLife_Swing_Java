@@ -4,10 +4,10 @@ import javax.swing.*;
 
 public class GameOfLife extends JFrame
 {
-    GameOfLife()
+    GameOfLife(int requestedUniverseSize)
     {
-        model = new Model();
-        view = new View();
+        model = new Model(requestedUniverseSize);
+        view = new View(requestedUniverseSize);
         controller = new Controller(model, view);
 
         controller.addActionsToButtons();
