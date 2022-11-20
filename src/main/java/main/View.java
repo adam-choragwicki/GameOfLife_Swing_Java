@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class View extends JFrame
 {
@@ -8,59 +9,84 @@ public class View extends JFrame
     {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         addComponents();
 
         pack();
         setLocationRelativeTo(null);
         setMinimumSize(getSize());
+        setResizable(false);
         setVisible(true);
     }
 
     private void addComponents()
     {
+        JPanel controlsPanel = new JPanel();
+        controlsPanel.setLayout(new BoxLayout(controlsPanel, BoxLayout.Y_AXIS));
+
         JPanel buttonsPanel = new JPanel();
 
-        playButton = new JToggleButton("PLAY");
-        playButton.setFocusable(false);
-        buttonsPanel.add(playButton);
+        toggleEvolutionButton = new JToggleButton("PLAY");
+        toggleEvolutionButton.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
 
-        resetButton = new JButton("RESET");
-        resetButton.setFocusable(false);
-        buttonsPanel.add(resetButton);
+        toggleEvolutionButton.setFocusable(false);
+        buttonsPanel.add(toggleEvolutionButton);
 
-        add(buttonsPanel);
+        resetEvolutionButton = new JButton("RESET");
+        resetEvolutionButton.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
+        resetEvolutionButton.setFocusable(false);
+        buttonsPanel.add(resetEvolutionButton);
+
+        generateUniverseButton = new JButton("GENERATE UNIVERSE");
+        generateUniverseButton.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
+        generateUniverseButton.setFocusable(false);
+        buttonsPanel.add(generateUniverseButton);
+
+        controlsPanel.add(buttonsPanel);
 
         JPanel labelsPanel = new JPanel();
-
         generationCounterLabel = new JLabel("Generation #");
+        generationCounterLabel.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
         labelsPanel.add(generationCounterLabel);
 
         aliveCellsCounterLabel = new JLabel("Alive: ");
+        aliveCellsCounterLabel.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
         labelsPanel.add(aliveCellsCounterLabel);
-        add(labelsPanel);
+
+        controlsPanel.add(labelsPanel);
+
+        JPanel speedControlPanel = new JPanel();
 
         speedSliderLabel = new JLabel("Speed level");
-        add(speedSliderLabel);
+        speedSliderLabel.setFont(new Font(null, Font.BOLD, Config.LABEL_FONT_SIZE));
+        speedControlPanel.add(speedSliderLabel);
 
         speedSlider = new JSlider(EvolutionSpeedLevel.LEVEL_1.getNumericValue(), EvolutionSpeedLevel.LEVEL_10.getNumericValue(), EvolutionSpeedLevel.LEVEL_5.getNumericValue());
         speedSlider.setMajorTickSpacing(1);
         speedSlider.setPaintTicks(true);
-        add(speedSlider);
+        speedControlPanel.add(speedSlider);
+
+        controlsPanel.add(speedControlPanel);
 
         universeDisplay = new UniverseDisplay(Config.UNIVERSE_SIZE);
-        add(universeDisplay);
+
+        add(controlsPanel, BorderLayout.WEST);
+        add(universeDisplay, BorderLayout.EAST);
     }
 
-    public JToggleButton getPlayButton()
+    public JToggleButton getToggleEvolutionButton()
     {
-        return playButton;
+        return toggleEvolutionButton;
     }
 
-    public JButton getResetButton()
+    public JButton getResetEvolutionButton()
     {
-        return resetButton;
+        return resetEvolutionButton;
+    }
+
+    public JButton getGenerateUniverseButton()
+    {
+        return generateUniverseButton;
     }
 
     public JLabel getGenerationCounterLabel()
@@ -83,8 +109,9 @@ public class View extends JFrame
         return speedSlider;
     }
 
-    JToggleButton playButton;
-    JButton resetButton;
+    JToggleButton toggleEvolutionButton;
+    JButton resetEvolutionButton;
+    JButton generateUniverseButton;
     JLabel generationCounterLabel;
     JLabel aliveCellsCounterLabel;
     JLabel speedSliderLabel;

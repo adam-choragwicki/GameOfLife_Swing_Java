@@ -11,14 +11,16 @@ public class Controller
 
     public void addActionsToButtons()
     {
-        view.getPlayButton().addActionListener(actionEvent ->
+        view.getToggleEvolutionButton().addActionListener(actionEvent ->
         {
             System.out.println("PLAY BUTTON CLICKED");
-            view.getResetButton().setEnabled(!view.getPlayButton().isSelected());
+            view.getResetEvolutionButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
+            view.getGenerateUniverseButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
+            view.getToggleEvolutionButton().setText(!view.getToggleEvolutionButton().isSelected() ? "PLAY" : "STOP");
             toggleEvolution();
         });
 
-        view.getResetButton().addActionListener(actionEvent ->
+        view.getResetEvolutionButton().addActionListener(actionEvent ->
         {
             System.out.println("RESET EVOLUTION CLICKED");
             model.resetEvolution();
