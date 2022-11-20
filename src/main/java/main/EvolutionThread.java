@@ -31,14 +31,12 @@ public class EvolutionThread extends Thread
                 try
                 {
                     /*Pause evolution*/
-                    System.out.println("PAUSE EVOLUTION");
                     Thread.sleep(Long.MAX_VALUE);
                 }
                 catch (InterruptedException ex)
                 {
                     /*Resume evolution*/
                     /*Go back to executing loop*/
-                    System.out.println("RESUME EVOLUTION");
                 }
             }
         }

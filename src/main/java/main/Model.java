@@ -12,14 +12,14 @@ public class Model
         return universe;
     }
 
-    public void resetUniverse()
+    public void resetEvolution()
     {
         universe.reset();
     }
 
-    public void resetEvolution()
+    public void generateNewUniverse()
     {
-        resetUniverse();
+        universe.populate(true);
     }
 
     final Universe universe;

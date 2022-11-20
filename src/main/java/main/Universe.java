@@ -14,13 +14,14 @@ public class Universe
             universeArray[row] = new Cell[size];
         }
 
-        populate();
+        populate(true);
     }
 
     public Universe(Universe universe)
     {
         this.size = universe.size;
-        this.generation = universe.generation;
+        this.generationCounter = universe.generationCounter;
+        this.currentEvolutionSeed = universe.currentEvolutionSeed;
         universeArray = universe.universeArray.clone();
 
         for (int row = 0; row < size; row++)
@@ -29,11 +30,18 @@ public class Universe
         }
     }
 
-    private void populate()
+    public void populate(boolean newSeed)
     {
-        int seed = 0;
+        clear();
 
-        Random random = new Random(seed);
+        Random random = new Random();
+
+        if (newSeed)
+        {
+            currentEvolutionSeed = random.nextLong();
+        }
+
+        random.setSeed(currentEvolutionSeed);
 
         for (int row = 0; row < size; row++)
         {
@@ -43,13 +51,24 @@ public class Universe
             }
         }
 
-        generation = 1;
+        generationCounter = 1;
+    }
+
+    private void clear()
+    {
+        for (int row = 0; row < size; row++)
+        {
+            for (int column = 0; column < size; column++)
+            {
+                setCellAt(row, column, null);
+            }
+        }
     }
 
     public void evolve()
     {
         EvolutionManager.evolveUniverse(this);
-        ++generation;
+        ++generationCounter;
     }
 
     public int getAliveCellsCount()
@@ -74,8 +93,7 @@ public class Universe
 
     public void reset()
     {
-        /*Works only for constant seed*/
-        populate();
+        populate(false);
     }
 
     private void setCellAt(int row, int column, CellState cellState)
@@ -103,13 +121,13 @@ public class Universe
         return size;
     }
 
-    public int getGeneration()
+    public int getGenerationCounter()
     {
-        return generation;
+        return generationCounter;
     }
 
     private final int size;
-
-    private int generation;
+    private int generationCounter;
+    private long currentEvolutionSeed;
     private final Cell[][] universeArray;
 }

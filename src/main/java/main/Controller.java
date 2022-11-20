@@ -13,7 +13,6 @@ public class Controller
     {
         view.getToggleEvolutionButton().addActionListener(actionEvent ->
         {
-            System.out.println("PLAY BUTTON CLICKED");
             view.getResetEvolutionButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
             view.getGenerateUniverseButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
             view.getToggleEvolutionButton().setText(!view.getToggleEvolutionButton().isSelected() ? "PLAY" : "STOP");
@@ -22,26 +21,28 @@ public class Controller
 
         view.getResetEvolutionButton().addActionListener(actionEvent ->
         {
-            System.out.println("RESET EVOLUTION CLICKED");
             model.resetEvolution();
+            updateGUI();
+        });
+
+        view.getGenerateUniverseButton().addActionListener(actionEvent ->
+        {
+            model.generateNewUniverse();
             updateGUI();
         });
     }
 
     public void updateGUI()
     {
-        view.getGenerationCounterLabel().setText("Generation: %d".formatted(model.getUniverse().getGeneration()));
+        view.getGenerationCounterLabel().setText("Generation: %d".formatted(model.getUniverse().getGenerationCounter()));
         view.getAliveCellsCounterLabel().setText("Alive cells: %d".formatted(model.getUniverse().getAliveCellsCount()));
         view.getUniverseDisplay().repaint();
     }
 
     public void toggleEvolution()
     {
-        System.out.println("START EVOLUTION CLICKED");
-
         if (!evolutionThread.isAlive())
         {
-            System.out.println("STARTING THREAD");
             evolutionThread.start();
         }
         else
@@ -55,7 +56,6 @@ public class Controller
         view.getSpeedSlider().addChangeListener(changeEvent ->
         {
             int speedSliderValue = view.getSpeedSlider().getValue();
-            System.out.println("PROCESS SPEED CHANGE, new value=" + speedSliderValue);
             evolutionThread.setEvolutionSpeedLevel(EvolutionSpeedManager.convertEvolutionSpeedSliderValueToEvolutionSpeedLevelValue(speedSliderValue));
         });
     }
