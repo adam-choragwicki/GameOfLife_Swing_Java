@@ -52,19 +52,6 @@ public class Universe
         ++generation;
     }
 
-    public void display()
-    {
-        for (int row = 0; row < size; row++)
-        {
-            for (int column = 0; column < size; column++)
-            {
-                System.out.print(getCellAt(row, column));
-            }
-
-            System.out.println();
-        }
-    }
-
     public int getAliveCellsCount()
     {
         int aliveCellsCount = 0;
@@ -91,23 +78,9 @@ public class Universe
         populate();
     }
 
-//    public void displayAliveNeighborsCount()
-//    {
-//        for (int row = 0; row < size; row++)
-//        {
-//            for (int column = 0; column < size; column++)
-//            {
-//                int aliveNeighborsCount = CellManager.getAliveNeighborCellsCount(this, new Coordinates(row, column));
-//                System.out.print(aliveNeighborsCount);
-//            }
-//
-//            System.out.println();
-//        }
-//    }
-
     private void setCellAt(int row, int column, CellState cellState)
     {
-        universeArray[row][column] = new Cell(new Coordinates(row, column), cellState);
+        universeArray[row][column] = new Cell(cellState);
     }
 
     public void setCellAt(Coordinates coordinates, CellState cellState)

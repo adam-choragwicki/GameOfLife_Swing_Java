@@ -13,6 +13,7 @@ public class EvolutionThread extends Thread
         this.evolutionDelayMs = EvolutionSpeedManager.convertEvolutionSpeedLevelValueToEvolutionDelayMs(evolutionSpeedLevel);
     }
 
+    @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
     @Override
     public void run()
     {

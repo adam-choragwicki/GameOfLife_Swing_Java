@@ -2,9 +2,8 @@ package main;
 
 public class Cell
 {
-    Cell(Coordinates coordinates, CellState cellState)
+    Cell(CellState cellState)
     {
-        this.coordinates = coordinates;
         this.cellState = cellState;
     }
 
@@ -19,6 +18,5 @@ public class Cell
         return cellState;
     }
 
-    private final Coordinates coordinates;
     private final CellState cellState;
 }
