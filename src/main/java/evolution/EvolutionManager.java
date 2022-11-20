@@ -1,4 +1,9 @@
-package main;
+package evolution;
+
+import cell.CellManager;
+import cell.CellState;
+import cell.Coordinates;
+import model.Universe;
 
 public class EvolutionManager
 {
@@ -15,26 +20,26 @@ public class EvolutionManager
 
                 int aliveNeighborsCount = CellManager.getAliveNeighborCellsCount(originalUniverse, coordinates);
 
-                if (originalUniverse.getCellAt(coordinates).getState() == CellState.alive)
+                if (originalUniverse.getCellAt(coordinates).getState() == CellState.ALIVE)
                 {
                     if (aliveNeighborsCount == 2 || aliveNeighborsCount == 3)
                     {
-                        universe.setCellAt(coordinates, CellState.alive);
+                        universe.setCellAt(coordinates, CellState.ALIVE);
                     }
                     else
                     {
-                        universe.setCellAt(coordinates, CellState.dead);
+                        universe.setCellAt(coordinates, CellState.DEAD);
                     }
                 }
-                else if (originalUniverse.getCellAt(coordinates).getState() == CellState.dead)
+                else if (originalUniverse.getCellAt(coordinates).getState() == CellState.DEAD)
                 {
                     if (aliveNeighborsCount == 3)
                     {
-                        universe.setCellAt(coordinates, CellState.alive);
+                        universe.setCellAt(coordinates, CellState.ALIVE);
                     }
                     else
                     {
-                        universe.setCellAt(coordinates, CellState.dead);
+                        universe.setCellAt(coordinates, CellState.DEAD);
                     }
                 }
             }

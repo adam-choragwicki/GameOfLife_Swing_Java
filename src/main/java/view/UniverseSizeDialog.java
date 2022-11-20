@@ -1,11 +1,15 @@
-package main;
+package view;
+
+import config.Config;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UniverseSizeDialog extends JDialog
 {
-    UniverseSizeDialog()
+    public UniverseSizeDialog()
     {
         setTitle("Universe size dialog");
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -17,7 +21,7 @@ public class UniverseSizeDialog extends JDialog
         addComboBox();
         addButtons();
 
-        addActionsToButtons();
+        addActions();
 
         setLocationRelativeTo(null);
         setMinimumSize(getSize());
@@ -68,20 +72,32 @@ public class UniverseSizeDialog extends JDialog
         add(cancelButton);
     }
 
-    private void addActionsToButtons()
+    @SuppressWarnings("ConstantConditions")
+    private void addActions()
     {
         okButton.addActionListener(actionEvent ->
         {
             requestedUniverseSize = (int) universeSizeComboBox.getSelectedItem();
-            System.out.println("OK, selected size is " + universeSizeComboBox.getSelectedItem());
+            okClicked = true;
             dispose();
         });
 
         cancelButton.addActionListener(actionEvent ->
         {
-            requestedUniverseSize = EXIT_APPLICATION;
-            System.out.println("CANCEL");
+            okClicked = false;
             dispose();
+        });
+
+        addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosed(WindowEvent e)
+            {
+                if (!okClicked)
+                {
+                    System.exit(0);
+                }
+            }
         });
     }
 
@@ -95,7 +111,8 @@ public class UniverseSizeDialog extends JDialog
     private JButton cancelButton;
 
     private final int dialogWidth = 527;
+    @SuppressWarnings("FieldCanBeLocal")
     private final int dialogHeight = 250;
     private int requestedUniverseSize;
-    public static final int EXIT_APPLICATION = -1;
+    private boolean okClicked;
 }

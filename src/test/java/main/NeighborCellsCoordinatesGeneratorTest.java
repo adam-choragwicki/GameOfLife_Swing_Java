@@ -1,36 +1,40 @@
 package main;
 
+import cell.CellManager;
+import cell.CellState;
+import cell.Coordinates;
+import model.Universe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NeighborCellsCoordinatesGeneratorTest
 {
     @BeforeEach
     void setUp()
     {
-        universe = new Universe(4);
+        Universe universe = new Universe(4);
 
-        universe.setCellAt(new Coordinates(0, 0), CellState.alive);
-        universe.setCellAt(new Coordinates(0, 1), CellState.alive);
-        universe.setCellAt(new Coordinates(0, 2), CellState.dead);
-        universe.setCellAt(new Coordinates(0, 3), CellState.alive);
-        universe.setCellAt(new Coordinates(1, 0), CellState.alive);
-        universe.setCellAt(new Coordinates(1, 1), CellState.dead);
-        universe.setCellAt(new Coordinates(1, 2), CellState.alive);
-        universe.setCellAt(new Coordinates(1, 3), CellState.dead);
-        universe.setCellAt(new Coordinates(2, 0), CellState.alive);
-        universe.setCellAt(new Coordinates(2, 1), CellState.alive);
-        universe.setCellAt(new Coordinates(2, 2), CellState.dead);
-        universe.setCellAt(new Coordinates(2, 3), CellState.dead);
-        universe.setCellAt(new Coordinates(3, 0), CellState.dead);
-        universe.setCellAt(new Coordinates(3, 1), CellState.alive);
-        universe.setCellAt(new Coordinates(3, 2), CellState.alive);
-        universe.setCellAt(new Coordinates(3, 3), CellState.alive);
+        universe.setCellAt(new Coordinates(0, 0), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(0, 1), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(0, 2), CellState.DEAD);
+        universe.setCellAt(new Coordinates(0, 3), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(1, 0), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(1, 1), CellState.DEAD);
+        universe.setCellAt(new Coordinates(1, 2), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(1, 3), CellState.DEAD);
+        universe.setCellAt(new Coordinates(2, 0), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(2, 1), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(2, 2), CellState.DEAD);
+        universe.setCellAt(new Coordinates(2, 3), CellState.DEAD);
+        universe.setCellAt(new Coordinates(3, 0), CellState.DEAD);
+        universe.setCellAt(new Coordinates(3, 1), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(3, 2), CellState.ALIVE);
+        universe.setCellAt(new Coordinates(3, 3), CellState.ALIVE);
 
-        neighborCellsCoordinatesGenerator = new NeighborCellsCoordinatesGenerator(universe.getSize());
+        neighborCellsCoordinatesGenerator = new CellManager.NeighborCellsCoordinatesGenerator(universe.getSize());
     }
 
     @Test
@@ -39,7 +43,7 @@ class NeighborCellsCoordinatesGeneratorTest
     {
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(0, 0));
 
-        assertEquals(NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
 
         compareCoordinates(3, 3, coordinates[0]);
         compareCoordinates(3, 0, coordinates[1]);
@@ -55,10 +59,9 @@ class NeighborCellsCoordinatesGeneratorTest
     @DisplayName("Lower right corner cell")
     void generateNeighbourCoordinates2()
     {
-        NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator = new NeighborCellsCoordinatesGenerator(universe.getSize());
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(3, 3));
 
-        assertEquals(NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
 
         compareCoordinates(2, 2, coordinates[0]);
         compareCoordinates(2, 3, coordinates[1]);
@@ -74,10 +77,9 @@ class NeighborCellsCoordinatesGeneratorTest
     @DisplayName("Edge non-corner cell")
     void generateNeighbourCoordinates3()
     {
-        NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator = new NeighborCellsCoordinatesGenerator(universe.getSize());
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(0, 1));
 
-        assertEquals(NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
 
         compareCoordinates(3, 0, coordinates[0]);
         compareCoordinates(3, 1, coordinates[1]);
@@ -93,10 +95,9 @@ class NeighborCellsCoordinatesGeneratorTest
     @DisplayName("Non-edge non-corner cell")
     void generateNeighbourCoordinates4()
     {
-        NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator = new NeighborCellsCoordinatesGenerator(universe.getSize());
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(1, 1));
 
-        assertEquals(NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
 
         compareCoordinates(0, 0, coordinates[0]);
         compareCoordinates(0, 1, coordinates[1]);
@@ -116,6 +117,5 @@ class NeighborCellsCoordinatesGeneratorTest
         assertEquals(expectedCoordinates.column, actualCoordinates.column);
     }
 
-    private Universe universe;
-    private NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator;
+    private CellManager.NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator;
 }

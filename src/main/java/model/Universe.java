@@ -1,4 +1,9 @@
-package main;
+package model;
+
+import cell.Cell;
+import cell.CellState;
+import cell.Coordinates;
+import evolution.EvolutionManager;
 
 import java.util.Random;
 
@@ -47,7 +52,7 @@ public class Universe
         {
             for (int column = 0; column < size; column++)
             {
-                setCellAt(row, column, (random.nextBoolean() ? CellState.alive : CellState.dead));
+                setCellAt(row, column, (random.nextBoolean() ? CellState.ALIVE : CellState.DEAD));
             }
         }
 
@@ -81,7 +86,7 @@ public class Universe
             {
                 Coordinates coordinates = new Coordinates(row, column);
 
-                if (getCellAt(coordinates).getState() == CellState.alive)
+                if (getCellAt(coordinates).getState() == CellState.ALIVE)
                 {
                     ++aliveCellsCount;
                 }

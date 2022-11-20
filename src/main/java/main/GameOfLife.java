@@ -1,8 +1,10 @@
 package main;
 
-import javax.swing.*;
+import controller.Controller;
+import model.Model;
+import view.View;
 
-public class GameOfLife extends JFrame
+public class GameOfLife
 {
     GameOfLife(int requestedUniverseSize)
     {
@@ -11,8 +13,8 @@ public class GameOfLife extends JFrame
         controller = new Controller(model, view);
 
         controller.addActionsToButtons();
-        controller.setUniverse();
         controller.addSpeedSliderChangeListener();
+        controller.setUniverse();
     }
 
     final Model model;

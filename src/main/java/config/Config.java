@@ -1,4 +1,6 @@
-package main;
+package config;
+
+import evolution.EvolutionSpeedLevel;
 
 public class Config
 {

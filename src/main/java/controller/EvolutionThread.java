@@ -1,4 +1,8 @@
-package main;
+package controller;
+
+import config.Config;
+import evolution.EvolutionSpeedLevel;
+import evolution.EvolutionSpeedManager;
 
 public class EvolutionThread extends Thread
 {

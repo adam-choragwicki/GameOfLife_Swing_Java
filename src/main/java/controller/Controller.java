@@ -1,4 +1,8 @@
-package main;
+package controller;
+
+import evolution.EvolutionSpeedManager;
+import model.Model;
+import view.View;
 
 public class Controller
 {

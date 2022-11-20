@@ -1,8 +1,8 @@
-package main;
+package model;
 
 public class Model
 {
-    Model(int universeSize)
+    public Model(int universeSize)
     {
         universe = new Universe(universeSize);
     }

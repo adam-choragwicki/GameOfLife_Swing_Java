@@ -1,11 +1,14 @@
-package main;
+package view;
+
+import config.Config;
+import evolution.EvolutionSpeedLevel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class View extends JFrame
 {
-    View(int universeSize)
+    public View(int universeSize)
     {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,16 +1,10 @@
-package main;
+package cell;
 
 public class Cell
 {
-    Cell(CellState cellState)
+    public Cell(CellState cellState)
     {
         this.cellState = cellState;
-    }
-
-    @Override
-    public String toString()
-    {
-        return String.valueOf(cellState.getTextRepresentation());
     }
 
     public CellState getState()

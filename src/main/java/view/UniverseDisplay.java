@@ -1,4 +1,9 @@
-package main;
+package view;
+
+import cell.CellState;
+import cell.Coordinates;
+import config.Config;
+import model.Universe;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +35,7 @@ public class UniverseDisplay extends JPanel
             {
                 Coordinates cellCoordinates = new Coordinates(row, column);
 
-                if (universe.getCellAt(cellCoordinates).getState() == CellState.alive)
+                if (universe.getCellAt(cellCoordinates).getState() == CellState.ALIVE)
                 {
                     graphics2D.fillRect(column * Config.CELL_SIZE, row * Config.CELL_SIZE, Config.CELL_SIZE, Config.CELL_SIZE);
                 }

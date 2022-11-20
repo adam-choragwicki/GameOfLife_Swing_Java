@@ -1,8 +1,8 @@
-package main;
+package cell;
 
 public class Coordinates
 {
-    Coordinates(int row, int column)
+    public Coordinates(int row, int column)
     {
         this.row = row;
         this.column = column;
