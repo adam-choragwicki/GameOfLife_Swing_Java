@@ -6,7 +6,7 @@ public class Controller
     {
         this.model = model;
         this.view = view;
-        evolutionThread = new EvolutionThread(this);
+        this.evolutionThread = new EvolutionThread(this);
     }
 
     public void addActionsToButtons()
@@ -46,6 +46,16 @@ public class Controller
         {
             evolutionThread.interrupt();
         }
+    }
+
+    public void addSpeedSliderChangeListener()
+    {
+        view.getSpeedSlider().addChangeListener(changeEvent ->
+        {
+            int speedSliderValue = view.getSpeedSlider().getValue();
+            System.out.println("PROCESS SPEED CHANGE, new value=" + speedSliderValue);
+            evolutionThread.setEvolutionSpeedLevel(EvolutionSpeedManager.convertEvolutionSpeedSliderValueToEvolutionSpeedLevelValue(speedSliderValue));
+        });
     }
 
     public void setUniverse()

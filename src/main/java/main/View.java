@@ -41,6 +41,14 @@ public class View extends JFrame
         labelsPanel.add(aliveCellsCounterLabel);
         add(labelsPanel);
 
+        speedSliderLabel = new JLabel("Speed level");
+        add(speedSliderLabel);
+
+        speedSlider = new JSlider(EvolutionSpeedLevel.LEVEL_1.getNumericValue(), EvolutionSpeedLevel.LEVEL_10.getNumericValue(), EvolutionSpeedLevel.LEVEL_5.getNumericValue());
+        speedSlider.setMajorTickSpacing(1);
+        speedSlider.setPaintTicks(true);
+        add(speedSlider);
+
         universeDisplay = new UniverseDisplay(Config.UNIVERSE_SIZE);
         add(universeDisplay);
     }
@@ -70,9 +78,16 @@ public class View extends JFrame
         return universeDisplay;
     }
 
+    public JSlider getSpeedSlider()
+    {
+        return speedSlider;
+    }
+
     JToggleButton playButton;
     JButton resetButton;
     JLabel generationCounterLabel;
     JLabel aliveCellsCounterLabel;
+    JLabel speedSliderLabel;
+    JSlider speedSlider;
     UniverseDisplay universeDisplay;
 }

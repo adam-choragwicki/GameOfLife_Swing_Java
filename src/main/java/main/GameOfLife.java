@@ -12,6 +12,7 @@ public class GameOfLife extends JFrame
 
         controller.addActionsToButtons();
         controller.setUniverse();
+        controller.addSpeedSliderChangeListener();
     }
 
     final Model model;
