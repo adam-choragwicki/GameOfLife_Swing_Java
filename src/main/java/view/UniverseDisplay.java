@@ -10,16 +10,11 @@ import java.awt.*;
 
 public class UniverseDisplay extends JPanel
 {
-    public UniverseDisplay(int sizeOfUniverse)
-    {
-        this.sizeOfUniverse = sizeOfUniverse;
-        setPreferredSize(new Dimension(this.sizeOfUniverse * Config.CELL_SIZE, this.sizeOfUniverse * Config.CELL_SIZE));
-    }
-
-    public void setUniverse(Universe universe)
+    public UniverseDisplay(Universe universe)
     {
         this.universe = universe;
-        repaint();
+        this.universeSize = universe.getSize();
+        setPreferredSize(new Dimension(this.universeSize * Config.CELL_SIZE, this.universeSize * Config.CELL_SIZE));
     }
 
     @Override
@@ -29,9 +24,9 @@ public class UniverseDisplay extends JPanel
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setColor(Color.black);
 
-        for (int row = 0; row < sizeOfUniverse; row++)
+        for (int row = 0; row < universeSize; row++)
         {
-            for (int column = 0; column < sizeOfUniverse; column++)
+            for (int column = 0; column < universeSize; column++)
             {
                 Coordinates cellCoordinates = new Coordinates(row, column);
 
@@ -47,6 +42,6 @@ public class UniverseDisplay extends JPanel
         }
     }
 
-    private final int sizeOfUniverse;
-    private Universe universe;
+    private final Universe universe;
+    private final int universeSize;
 }

@@ -15,7 +15,7 @@ public class UniverseSizeDialog extends JDialog
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setLayout(null);
 
-        setSize(dialogWidth, dialogHeight);
+        setSize(DIALOG_WIDTH, DIALOG_HEIGHT);
 
         addLabel();
         addComboBox();
@@ -34,7 +34,7 @@ public class UniverseSizeDialog extends JDialog
     {
         JLabel universeSizeLabel = new JLabel("Choose universe size");
         universeSizeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        universeSizeLabel.setBounds(0, 0, dialogWidth, 50);
+        universeSizeLabel.setBounds(0, 0, DIALOG_WIDTH, 50);
         universeSizeLabel.setFont(new Font(null, Font.BOLD, 50));
         add(universeSizeLabel);
     }
@@ -42,7 +42,7 @@ public class UniverseSizeDialog extends JDialog
     private void addComboBox()
     {
         universeSizeComboBox = new JComboBox<>();
-        universeSizeComboBox.setBounds(0, 60, dialogWidth - 15, 50);
+        universeSizeComboBox.setBounds(0, 60, DIALOG_WIDTH - 15, 50);
         universeSizeComboBox.setFocusable(false);
         universeSizeComboBox.setFont(new Font(null, Font.BOLD, 30));
 
@@ -61,13 +61,13 @@ public class UniverseSizeDialog extends JDialog
     private void addButtons()
     {
         okButton = new JButton("OK");
-        okButton.setBounds(0, 130, dialogWidth - 15, 40);
+        okButton.setBounds(0, 130, DIALOG_WIDTH - 15, 40);
         okButton.setFocusable(false);
 
         add(okButton);
 
         cancelButton = new JButton("Cancel");
-        cancelButton.setBounds(0, 170, dialogWidth - 15, 40);
+        cancelButton.setBounds(0, 170, DIALOG_WIDTH - 15, 40);
         cancelButton.setFocusable(false);
 
         add(cancelButton);
@@ -110,8 +110,8 @@ public class UniverseSizeDialog extends JDialog
     private JButton okButton;
     private JButton cancelButton;
 
-    private final int dialogWidth = 700;
-    private final int dialogHeight = 250;
+    private final int DIALOG_WIDTH = 700;
+    private final int DIALOG_HEIGHT = 250;
     private int requestedUniverseSize;
     private boolean okClicked;
 }
