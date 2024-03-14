@@ -2,11 +2,11 @@ package controller;
 
 import evolution.EvolutionSpeedManager;
 import model.Model;
-import view.View;
+import view.MainWindow;
 
 public class Controller
 {
-    public Controller(Model model, View view)
+    public Controller(Model model, MainWindow view)
     {
         this.model = model;
         this.view = view;
@@ -76,6 +76,6 @@ public class Controller
     }
 
     private final Model model;
-    private final View view;
+    private final MainWindow view;
     private final EvolutionThread evolutionThread;
 }

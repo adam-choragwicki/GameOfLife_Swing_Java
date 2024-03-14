@@ -33,6 +33,7 @@ public class UniverseSizeDialog extends JDialog
     private void addLabel()
     {
         JLabel universeSizeLabel = new JLabel("Choose universe size");
+        universeSizeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         universeSizeLabel.setBounds(0, 0, dialogWidth, 50);
         universeSizeLabel.setFont(new Font(null, Font.BOLD, 50));
         add(universeSizeLabel);
@@ -72,7 +73,6 @@ public class UniverseSizeDialog extends JDialog
         add(cancelButton);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void addActions()
     {
         okButton.addActionListener(actionEvent ->
@@ -110,8 +110,7 @@ public class UniverseSizeDialog extends JDialog
     private JButton okButton;
     private JButton cancelButton;
 
-    private final int dialogWidth = 527;
-    @SuppressWarnings("FieldCanBeLocal")
+    private final int dialogWidth = 700;
     private final int dialogHeight = 250;
     private int requestedUniverseSize;
     private boolean okClicked;

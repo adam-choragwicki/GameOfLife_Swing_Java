@@ -2,14 +2,14 @@ package main;
 
 import controller.Controller;
 import model.Model;
-import view.View;
+import view.MainWindow;
 
-public class GameOfLife
+public class Application
 {
-    GameOfLife(int requestedUniverseSize)
+    Application(int requestedUniverseSize)
     {
         model = new Model(requestedUniverseSize);
-        view = new View(requestedUniverseSize);
+        view = new MainWindow(requestedUniverseSize);
         controller = new Controller(model, view);
 
         controller.addActionsToButtons();
@@ -18,6 +18,6 @@ public class GameOfLife
     }
 
     final Model model;
-    final View view;
+    final MainWindow view;
     final Controller controller;
 }
