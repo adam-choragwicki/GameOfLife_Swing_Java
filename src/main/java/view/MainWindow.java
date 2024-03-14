@@ -6,9 +6,9 @@ import evolution.EvolutionSpeedLevel;
 import javax.swing.*;
 import java.awt.*;
 
-public class View extends JFrame
+public class MainWindow extends JFrame
 {
-    public View(int universeSize)
+    public MainWindow(int universeSize)
     {
         super("Game of Life");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,9 +16,9 @@ public class View extends JFrame
         addComponents(universeSize);
 
         pack();
+        setResizable(false);
         setLocationRelativeTo(null);
         setMinimumSize(getSize());
-        setResizable(false);
         setVisible(true);
     }
 
