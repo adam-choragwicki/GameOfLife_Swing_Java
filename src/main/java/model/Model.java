@@ -1,10 +1,12 @@
 package model;
 
+import config.Config;
+
 public class Model
 {
-    public Model(int universeSize)
+    public Model()
     {
-        universe = new Universe(universeSize);
+        createNewUniverse(Config.DEFAULT_UNIVERSE_SIZE);
     }
 
     public Universe getUniverse()
@@ -17,10 +19,15 @@ public class Model
         universe.reset();
     }
 
-    public void generateNewUniverse()
+    public void createNewUniverse()
     {
         universe.populate(true);
     }
 
-    final Universe universe;
+    public void createNewUniverse(int universeSize)
+    {
+        universe = new Universe(universeSize);
+    }
+
+    Universe universe;
 }

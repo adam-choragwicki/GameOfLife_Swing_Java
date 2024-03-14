@@ -3,6 +3,7 @@ package controller;
 import evolution.EvolutionSpeedManager;
 import model.Model;
 import view.MainWindow;
+import view.UniverseSizeDialog;
 
 public class Controller
 {
@@ -11,6 +12,11 @@ public class Controller
         this.model = model;
         this.view = view;
         this.evolutionThread = new EvolutionThread(this);
+
+        addActionsToButtons();
+        addSpeedSliderChangeListener();
+
+        updateGUI();
     }
 
     public void addActionsToButtons()
@@ -18,7 +24,8 @@ public class Controller
         view.getToggleEvolutionButton().addActionListener(actionEvent ->
         {
             view.getResetEvolutionButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
-            view.getGenerateUniverseButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
+            view.getCreateNewUniverseButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
+            view.getChangeUniverseSizeButton().setEnabled(!view.getToggleEvolutionButton().isSelected());
             view.getToggleEvolutionButton().setText(!view.getToggleEvolutionButton().isSelected() ? "PLAY" : "STOP");
             toggleEvolution();
         });
@@ -29,17 +36,39 @@ public class Controller
             updateGUI();
         });
 
-        view.getGenerateUniverseButton().addActionListener(actionEvent ->
+        view.getCreateNewUniverseButton().addActionListener(actionEvent ->
         {
-            model.generateNewUniverse();
+            model.createNewUniverse();
             updateGUI();
+        });
+
+        view.getChangeUniverseSizeButton().addActionListener(actionEvent ->
+        {
+            view.setVisible(false);
+            UniverseSizeDialog universeSizeDialog = new UniverseSizeDialog();
+
+            model.createNewUniverse(universeSizeDialog.getRequestedUniverseSize());
+
+            view.updateUniverseDisplay();
+            view.setVisible(true);
+
+            updateGUI();
+        });
+    }
+
+    public void addSpeedSliderChangeListener()
+    {
+        view.getSpeedSlider().addChangeListener(changeEvent ->
+        {
+            int speedSliderValue = view.getSpeedSlider().getValue();
+            evolutionThread.setEvolutionSpeedLevel(EvolutionSpeedManager.convertEvolutionSpeedSliderValueToEvolutionSpeedLevelValue(speedSliderValue));
         });
     }
 
     public void updateGUI()
     {
-        view.getGenerationCounterLabel().setText("Generation: %d".formatted(model.getUniverse().getGenerationCounter()));
-        view.getAliveCellsCounterLabel().setText("Alive cells: %d".formatted(model.getUniverse().getAliveCellsCount()));
+        view.getGenerationCounterLabel().setText(String.format("Generation: %d   ", model.getUniverse().getGenerationCounter()));
+        view.getAliveCellsCounterLabel().setText(String.format("Alive cells: %d", model.getUniverse().getAliveCellsCount()));
         view.getUniverseDisplay().repaint();
     }
 
@@ -53,21 +82,6 @@ public class Controller
         {
             evolutionThread.interrupt();
         }
-    }
-
-    public void addSpeedSliderChangeListener()
-    {
-        view.getSpeedSlider().addChangeListener(changeEvent ->
-        {
-            int speedSliderValue = view.getSpeedSlider().getValue();
-            evolutionThread.setEvolutionSpeedLevel(EvolutionSpeedManager.convertEvolutionSpeedSliderValueToEvolutionSpeedLevelValue(speedSliderValue));
-        });
-    }
-
-    public void setUniverse()
-    {
-        view.getUniverseDisplay().setUniverse(model.getUniverse());
-        updateGUI();
     }
 
     public Model getModel()

@@ -14,7 +14,7 @@ Java implementation of the John Conway's Game of Life using:
 ### Wikipedia article about the game and its rules:
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
-###Features:
+### Features:
 * Universe size range 25-100
 * Pausing/Resetting evolution
 * Generating new universe (based on new seed)

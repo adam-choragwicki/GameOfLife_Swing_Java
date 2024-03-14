@@ -9,4 +9,5 @@ public class Config
     public static final int LABEL_FONT_SIZE = 25;
     public static final int MIN_UNIVERSE_SIZE = 25;
     public static final int MAX_UNIVERSE_SIZE = 100;
+    public static final int DEFAULT_UNIVERSE_SIZE = 50;
 }
