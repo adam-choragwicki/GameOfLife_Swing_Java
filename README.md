@@ -15,18 +15,21 @@ Java implementation of the John Conway's Game of Life using:
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 ### Features:
-* Universe size range 25-100
+* Universe size ranges 25–100
 * Pausing/Resetting evolution
-* Generating new universe (based on new seed)
+* Generating a new universe (based on new seed)
 * Modifiable speed of evolution
 
-Internally it is implemented using Model-View-Controller architecture.
+Internally, it is implemented using Model-View-Controller architecture.
 
 # Tests
 Unit tested using JUnit 5.9.0
 
 # How to run
-Run\
-**java -jar executable/GameOfLife_Swing_Java.jar**
+#### Prerequisites:
+* Java 13 or higher
 
-Minimum JRE 13 is required.
+1. Download the latest release zip from:\
+https://github.com/adam-choragwicki/GameOfLife_Swing_Java/releases/latest/download/GameOfLife_Swing_Java.jar
+
+2. Run `java -jar GameOfLife_Swing_Java.jar`
