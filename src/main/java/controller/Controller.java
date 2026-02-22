@@ -44,13 +44,13 @@ public class Controller
 
         view.getChangeUniverseSizeButton().addActionListener(actionEvent ->
         {
-            view.setVisible(false);
             UniverseSizeDialog universeSizeDialog = new UniverseSizeDialog();
 
-            model.createNewUniverse(universeSizeDialog.getRequestedUniverseSize());
-
-            view.updateUniverseDisplay();
-            view.setVisible(true);
+            if (universeSizeDialog.isOkClicked())
+            {
+                model.createNewUniverse(universeSizeDialog.getRequestedUniverseSize());
+                view.updateUniverseDisplay();
+            }
 
             updateGUI();
         });

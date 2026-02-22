@@ -4,8 +4,6 @@ import config.Config;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class UniverseSizeDialog extends JDialog
 {
@@ -27,6 +25,7 @@ public class UniverseSizeDialog extends JDialog
         setMinimumSize(getSize());
         setResizable(false);
         setModal(true);
+        requestedUniverseSize = Config.DEFAULT_UNIVERSE_SIZE;
         setVisible(true);
     }
 
@@ -53,7 +52,7 @@ public class UniverseSizeDialog extends JDialog
             universeSizeComboBox.addItem(i);
         }
 
-        universeSizeComboBox.setSelectedIndex(25);
+        universeSizeComboBox.setSelectedItem(Config.DEFAULT_UNIVERSE_SIZE);
 
         add(universeSizeComboBox);
     }
@@ -87,23 +86,16 @@ public class UniverseSizeDialog extends JDialog
             okClicked = false;
             dispose();
         });
-
-        addWindowListener(new WindowAdapter()
-        {
-            @Override
-            public void windowClosed(WindowEvent e)
-            {
-                if (!okClicked)
-                {
-                    System.exit(0);
-                }
-            }
-        });
     }
 
     public int getRequestedUniverseSize()
     {
         return requestedUniverseSize;
+    }
+
+    public boolean isOkClicked()
+    {
+        return okClicked;
     }
 
     private JComboBox<Integer> universeSizeComboBox;
