@@ -12,9 +12,16 @@ public class UniverseDisplay extends JPanel
 {
     public UniverseDisplay(Universe universe)
     {
+        setUniverse(universe);
+    }
+
+    public void setUniverse(Universe universe)
+    {
+        // Universe may be swapped on the EDT after background evolution.
         this.universe = universe;
         this.universeSize = universe.getSize();
         setPreferredSize(new Dimension(this.universeSize * Config.CELL_SIZE, this.universeSize * Config.CELL_SIZE));
+        revalidate();
     }
 
     @Override
@@ -42,6 +49,6 @@ public class UniverseDisplay extends JPanel
         }
     }
 
-    private final Universe universe;
-    private final int universeSize;
+    private Universe universe;
+    private int universeSize;
 }

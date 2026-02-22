@@ -14,6 +14,12 @@ public class Model
         return universe;
     }
 
+    public void setUniverse(Universe universe)
+    {
+        // Swapping the universe reference avoids cross-thread mutation of the live model.
+        this.universe = universe;
+    }
+
     public void resetEvolution()
     {
         universe.reset();

@@ -74,19 +74,29 @@ public class Controller
 
     public void toggleEvolution()
     {
-        if (!evolutionThread.isAlive())
+        if (view.getToggleEvolutionButton().isSelected())
         {
-            evolutionThread.start();
+            if (!evolutionThread.isAlive())
+            {
+                evolutionThread.start();
+            }
+
+            evolutionThread.resumeEvolution();
         }
         else
         {
-            evolutionThread.interrupt();
+            evolutionThread.pauseEvolution();
         }
     }
 
     public Model getModel()
     {
         return model;
+    }
+
+    public MainWindow getView()
+    {
+        return view;
     }
 
     private final Model model;
