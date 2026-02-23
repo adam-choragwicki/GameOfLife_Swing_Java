@@ -6,12 +6,14 @@ public class CellManager
 {
     public static int getAliveNeighborCellsCount(Universe universe, Coordinates coordinates)
     {
-        Cell[] neighborCells = getNeighborCells(universe, coordinates);
-
         int aliveNeighborsCount = 0;
 
-        for (Cell neighborCell : neighborCells)
+        Coordinates[] neighborCellsCoordinates = new NeighborCellsCoordinatesGenerator(universe.getSize())
+                .generateNeighbourCoordinates(coordinates);
+
+        for (Coordinates neighborCoordinates : neighborCellsCoordinates)
         {
+            Cell neighborCell = universe.getCellAt(neighborCoordinates);
             if (neighborCell.getState() == CellState.ALIVE)
             {
                 ++aliveNeighborsCount;
@@ -19,21 +21,6 @@ public class CellManager
         }
 
         return aliveNeighborsCount;
-    }
-
-    private static Cell[] getNeighborCells(Universe universe, Coordinates coordinates)
-    {
-        NeighborCellsCoordinatesGenerator neighborCellsCoordinatesGenerator = new NeighborCellsCoordinatesGenerator(universe.getSize());
-        Coordinates[] neighborCellsCoordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(coordinates);
-
-        Cell[] neighborCells = new Cell[NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT];
-
-        for (int i = 0; i < NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT; i++)
-        {
-            neighborCells[i] = universe.getCellAt(neighborCellsCoordinates[i]);
-        }
-
-        return neighborCells;
     }
 
     public static class NeighborCellsCoordinatesGenerator
@@ -45,48 +32,41 @@ public class CellManager
 
         public Coordinates[] generateNeighbourCoordinates(Coordinates coordinates)
         {
-            Coordinates[] neighbourCoordinates = new Coordinates[NEIGHBOR_CELLS_COUNT];
-
             final Coordinates[] directionalOffsets = new Coordinates[]
-            {
-            new Coordinates(-1, -1),
-            new Coordinates(-1, 0),
-            new Coordinates(-1, +1),
-            new Coordinates(0, -1),
-            new Coordinates(0, +1),
-            new Coordinates(+1, -1),
-            new Coordinates(+1, 0),
-            new Coordinates(+1, +1)
-            };
+                    {
+                            new Coordinates(-1, -1),
+                            new Coordinates(-1, 0),
+                            new Coordinates(-1, +1),
+                            new Coordinates(0, -1),
+                            new Coordinates(0, +1),
+                            new Coordinates(+1, -1),
+                            new Coordinates(+1, 0),
+                            new Coordinates(+1, +1)
+                    };
+
+            int neighborIndex = 0;
+            Coordinates[] neighborCoordinates = new Coordinates[NEIGHBOR_CELLS_COUNT];
 
             for (int i = 0; i < NEIGHBOR_CELLS_COUNT; i++)
             {
                 Coordinates coordinatesAfterOffset = coordinates.offsetCoordinates(directionalOffsets[i]);
 
-                if (coordinatesAfterOffset.row == -1)
+                if (coordinatesAfterOffset.row < 0 || coordinatesAfterOffset.row >= universeSize)
                 {
-                    coordinatesAfterOffset.row = universeSize - 1;
+                    continue;
                 }
 
-                if (coordinatesAfterOffset.row == universeSize)
+                if (coordinatesAfterOffset.column < 0 || coordinatesAfterOffset.column >= universeSize)
                 {
-                    coordinatesAfterOffset.row = 0;
+                    continue;
                 }
 
-                if (coordinatesAfterOffset.column == -1)
-                {
-                    coordinatesAfterOffset.column = universeSize - 1;
-                }
-
-                if (coordinatesAfterOffset.column == universeSize)
-                {
-                    coordinatesAfterOffset.column = 0;
-                }
-
-                neighbourCoordinates[i] = coordinatesAfterOffset;
+                neighborCoordinates[neighborIndex++] = coordinatesAfterOffset;
             }
 
-            return neighbourCoordinates;
+            Coordinates[] result = new Coordinates[neighborIndex];
+            System.arraycopy(neighborCoordinates, 0, result, 0, neighborIndex);
+            return result;
         }
 
         public static final int NEIGHBOR_CELLS_COUNT = 8;

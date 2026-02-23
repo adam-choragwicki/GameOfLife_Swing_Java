@@ -19,6 +19,7 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 * Pausing/Resetting evolution
 * Generating a new universe (based on new seed)
 * Modifiable speed of evolution
+* Finite grid with dead boundaries (no wrap-around)
 
 Internally, it is implemented using Model-View-Controller architecture.
 

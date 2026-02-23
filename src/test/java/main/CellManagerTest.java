@@ -37,22 +37,22 @@ class CellManagerTest
     @Test
     void getAliveNeighborCellsCount()
     {
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 0)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 1)));
-        assertEquals(6, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 2)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 3)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 0)));
+        assertEquals(2, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 0)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 1)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 2)));
+        assertEquals(1, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(0, 3)));
+        assertEquals(4, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 0)));
         assertEquals(6, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 1)));
         assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 2)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 3)));
-        assertEquals(4, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 0)));
+        assertEquals(2, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(1, 3)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 0)));
         assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 1)));
         assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 2)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 3)));
-        assertEquals(7, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 0)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 1)));
-        assertEquals(5, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 2)));
-        assertEquals(4, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 3)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(2, 3)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 0)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 1)));
+        assertEquals(3, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 2)));
+        assertEquals(1, CellManager.getAliveNeighborCellsCount(universe, new Coordinates(3, 3)));
     }
 
     private Universe universe;

@@ -34,21 +34,21 @@ class EvolutionManagerTest
 
         EvolutionManager.evolveUniverse(universe);
 
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 0)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 1)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 2)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 0)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 1)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 2)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 3)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(1, 0)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(1, 1)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(1, 2)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(1, 3)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 0)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(2, 0)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 1)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 2)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 3)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 0)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 1)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 2)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(2, 3)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 0)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 1)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 2)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 3)).getState());
     }
 
@@ -85,10 +85,10 @@ class EvolutionManagerTest
 
         EvolutionManager.evolveUniverse(universe);
 
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 0)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 1)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 2)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 3)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 0)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 1)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 2)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(0, 3)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(0, 4)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(1, 0)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(1, 1)).getState());
@@ -99,16 +99,16 @@ class EvolutionManagerTest
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 1)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(2, 2)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(2, 3)).getState());
-        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(2, 4)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 0)).getState());
+        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(2, 4)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 0)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 1)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 2)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 3)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(3, 4)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(3, 4)).getState());
         assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(4, 0)).getState());
         assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(4, 1)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(4, 2)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(4, 3)).getState());
-        assertEquals(CellState.ALIVE, universe.getCellAt(new Coordinates(4, 4)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(4, 2)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(4, 3)).getState());
+        assertEquals(CellState.DEAD, universe.getCellAt(new Coordinates(4, 4)).getState());
     }
 }

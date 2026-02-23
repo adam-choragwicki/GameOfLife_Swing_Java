@@ -43,16 +43,11 @@ class NeighborCellsCoordinatesGeneratorTest
     {
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(0, 0));
 
-        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(3, coordinates.length);
 
-        compareCoordinates(3, 3, coordinates[0]);
-        compareCoordinates(3, 0, coordinates[1]);
-        compareCoordinates(3, 1, coordinates[2]);
-        compareCoordinates(0, 3, coordinates[3]);
-        compareCoordinates(0, 1, coordinates[4]);
-        compareCoordinates(1, 3, coordinates[5]);
-        compareCoordinates(1, 0, coordinates[6]);
-        compareCoordinates(1, 1, coordinates[7]);
+        compareCoordinates(0, 1, coordinates[0]);
+        compareCoordinates(1, 0, coordinates[1]);
+        compareCoordinates(1, 1, coordinates[2]);
     }
 
     @Test
@@ -61,16 +56,11 @@ class NeighborCellsCoordinatesGeneratorTest
     {
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(3, 3));
 
-        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(3, coordinates.length);
 
         compareCoordinates(2, 2, coordinates[0]);
         compareCoordinates(2, 3, coordinates[1]);
-        compareCoordinates(2, 0, coordinates[2]);
-        compareCoordinates(3, 2, coordinates[3]);
-        compareCoordinates(3, 0, coordinates[4]);
-        compareCoordinates(0, 2, coordinates[5]);
-        compareCoordinates(0, 3, coordinates[6]);
-        compareCoordinates(0, 0, coordinates[7]);
+        compareCoordinates(3, 2, coordinates[2]);
     }
 
     @Test
@@ -79,16 +69,13 @@ class NeighborCellsCoordinatesGeneratorTest
     {
         Coordinates[] coordinates = neighborCellsCoordinatesGenerator.generateNeighbourCoordinates(new Coordinates(0, 1));
 
-        assertEquals(CellManager.NeighborCellsCoordinatesGenerator.NEIGHBOR_CELLS_COUNT, coordinates.length);
+        assertEquals(5, coordinates.length);
 
-        compareCoordinates(3, 0, coordinates[0]);
-        compareCoordinates(3, 1, coordinates[1]);
-        compareCoordinates(3, 2, coordinates[2]);
-        compareCoordinates(0, 0, coordinates[3]);
-        compareCoordinates(0, 2, coordinates[4]);
-        compareCoordinates(1, 0, coordinates[5]);
-        compareCoordinates(1, 1, coordinates[6]);
-        compareCoordinates(1, 2, coordinates[7]);
+        compareCoordinates(0, 0, coordinates[0]);
+        compareCoordinates(0, 2, coordinates[1]);
+        compareCoordinates(1, 0, coordinates[2]);
+        compareCoordinates(1, 1, coordinates[3]);
+        compareCoordinates(1, 2, coordinates[4]);
     }
 
     @Test
