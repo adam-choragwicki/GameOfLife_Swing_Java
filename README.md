@@ -1,9 +1,9 @@
 # Game of life
 
 Java implementation of the John Conway's Game of Life using:
-* OpenJDK 18
+* OpenJDK 25
 * Java Swing library
-* Maven 3.8.1.
+* Maven 3.9.11
 
 ![](screenshot1.jpg)
 
@@ -28,7 +28,7 @@ Unit tested using JUnit 5.9.0
 
 # How to run
 #### Prerequisites:
-* Java 13 or higher
+* Java 8 or higher
 
 1. Download the latest release zip from:\
 https://github.com/adam-choragwicki/GameOfLife_Swing_Java/releases/latest/download/GameOfLife_Swing_Java.jar
