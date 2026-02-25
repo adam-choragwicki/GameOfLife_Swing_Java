@@ -1,3 +1,5 @@
+[![Tests](https://github.com/adam-choragwicki/GameOfLife_Swing_Java/actions/workflows/tests-workflow.yml/badge.svg)](https://github.com/adam-choragwicki/GameOfLife_Swing_Java/actions/workflows/tests-workflow.yml)
+
 # Game of life
 
 Java implementation of the John Conway's Game of Life using:
